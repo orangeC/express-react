@@ -3,6 +3,7 @@ var app = express();
 var routes = require("./routes");
 
 var port = require("./config.js").port;
+var uri = require("./config.js").uri;
 
 
 var logger = require('morgan');//通过 morgan 记录每次 HTTP 请求的信息
@@ -18,7 +19,7 @@ app.use(cors());//使用中间件
 
 var User = require('./models/post');
 mongoose.Promise = global.Promise;//解决异步操作出现的错误
-mongoose.connect('mongodb://localhost:27017/newdata');
+mongoose.connect(uri);
 //连接我的数据库　－－newdata
 //已经启动27017 端口
 var db = mongoose.connection;

@@ -1,3 +1,4 @@
 module.exports = {
-  port: xxxx
+  port: xxxx,
+  uri:'mongodb://localhost:27017/xxx'
 };
