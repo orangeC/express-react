@@ -1,6 +1,10 @@
 var express = require('express');
 var app = express();
 var routes = require("./routes");
+
+var port = require("./config.js").port;
+
+
 var logger = require('morgan');//通过 morgan 记录每次 HTTP 请求的信息
 app.use(logger('dev'));//使用morgan
 var mongoose = require('mongoose');
@@ -44,6 +48,6 @@ routes(app);
 
 
 app.listen(4000, function() {
-  console.log('Express server is listening on port 4000')
+  console.log('Express server is listening on port '+ port)
 })
 //后台端口，不能与前台相同
