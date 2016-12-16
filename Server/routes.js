@@ -7,6 +7,20 @@ module.exports = function(app) {
 		res.json(req.body)
 	})
 
+	app.post("/auth/login",function(req,res){
+		User.findOne({username:req.body.username},function(err,user){
+				if(err) {console.log(err)}
+				if(!user) {res.status(403).json({error:"用户名不存在！"})}
+			user.comparePassword(req.body.password , function(err,isMatch){
+				if(err){console.log(err)}
+				if(!isMatch){res.status(403).json({error:"密码错误！"})}
+					res.json({
+						user: {name:user.username}
+					})
+			})
+		})
+	})
+
 
 	  app.get('/posts', function(req,res ){
 	  User.find().sort({"createdAt:":-1}).exec(function(err, posts) {

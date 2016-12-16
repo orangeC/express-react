@@ -24,4 +24,12 @@ UserSchema.pre('save', function(next) {
   });
 });
 
+//验证客户端传来的密码与数据库中的密码，用bcrypt.compare方法校对用bcrypt加密过的密码
+UserSchema.methods.comparePassword = function(password, cb) {
+  bcrypt.compare(password, this.password, function(err, isMatch) {
+    if (err) { return cb(err); }
+    cb(null, isMatch);
+  });
+}
+
 module.exports = mongoose.model('User', UserSchema);
