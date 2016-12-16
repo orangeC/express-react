@@ -1,6 +1,20 @@
 var express = require('express');
 var User = require('./models/user');
 
+var jwt = require('jsonwebtoken');//引入jsonwebtoken实现jwt功能
+
+var secret = require("./config.js").secret;
+
+
+var generateToken = function(user) {
+  return jwt.sign(user, secret, {
+    expiresIn: 3000    //设置过期时间
+  });
+}
+//定义gener方法 生成令牌（一种对浏览器的信任，以进行后续的访问）  调用sign签名接口  绑定服务器端密匙
+
+
+
 
 module.exports = function(app) {
 	app.post("/posts",function(req,res){
@@ -15,6 +29,7 @@ module.exports = function(app) {
 				if(err){console.log(err)}
 				if(!isMatch){res.status(403).json({error:"密码错误！"})}
 					res.json({
+						token: generateToken({name: user.username}),//使用jwt
 						user: {name:user.username}
 					})
 			})
