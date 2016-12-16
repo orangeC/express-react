@@ -27,7 +27,7 @@ db.on('error', console.log);
 
 db.once('open', function() {
     var user = new User({
-      username:"cheng",
+      username:"liu",
       password:"456"
     });
    user.save(function(err){
