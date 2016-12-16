@@ -17,7 +17,7 @@ var cors= require('cors');
 app.use(cors());//使用中间件
 
 
-var User = require('./models/post');
+var User = require('./models/user');
 mongoose.Promise = global.Promise;//解决异步操作出现的错误
 mongoose.connect(uri);
 //连接我的数据库　－－newdata
@@ -26,12 +26,11 @@ var db = mongoose.connection;
 db.on('error', console.log);
 
 db.once('open', function() {
-    var post = new User({
+    var user = new User({
       username:"cheng",
-      password:"123",
-      age:"23"
+      password:"456"
     });
-   post.save(function(err){
+   user.save(function(err){
      if(err) console.log(err);
    })
  console.log('success!');

@@ -1,5 +1,5 @@
 var express = require('express');
-var User = require('./models/post');
+var User = require('./models/user');
 
 
 module.exports = function(app) {
