@@ -26,13 +26,13 @@ var db = mongoose.connection;
 db.on('error', console.log);
 
 db.once('open', function() {
-    var user = new User({
-      username:"yu",
-      password:"123"
-    });
-   user.save(function(err){
-     if(err) console.log(err);
-   })
+   //  var user = new User({
+   //    username:"yu",
+   //    password:"123"
+   //  });
+   // user.save(function(err){
+   //   if(err) console.log(err);
+   // })
  console.log('success!');
 });
 

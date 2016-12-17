@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
+import axios from 'axios';
 
 class LogIn extends Component {
   getStyles() {
@@ -41,14 +42,26 @@ class LogIn extends Component {
       }
     };
   }
+  handlesubmit(e){
+  	e.preventDefault();
+  	let username = this.refs.username.getValue();
+  	let password = this.refs.password.getValue();
+  	axios.post("http://localhost:4000/auth/login",{username,password})
+  	 .then(response => {
+	    console.log(response.data.token)
+	  })
+	  .catch(error => {
+	    console.log(error);
+	  });
+  }
 
   render() {
     let styles = this.getStyles();
     return (
       <div style={styles.root}>
-        <form>
-          <TextField style={styles.textField} floatingLabelText="用户名" />
-          <TextField style={styles.textField} floatingLabelText="密码" type="password" />
+        <form onSubmit={this.handlesubmit.bind(this)} >
+          <TextField ref="username" style={styles.textField} floatingLabelText="用户名" />
+          <TextField ref="password" style={styles.textField} floatingLabelText="密码" type="password" />
           <RaisedButton primary={true} style={styles.button} labelStyle={styles.label} type="submit" label="登录" />
         </form>
       </div>
