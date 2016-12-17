@@ -51,7 +51,7 @@ class LogIn extends Component {
 	    console.log(response.data.token)
 	  })
 	  .catch(error => {
-	    console.log(error);
+	    console.log(error.response);
 	  });
   }
 

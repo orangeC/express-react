@@ -8,11 +8,11 @@ class User extends React.Component {
     }
   }
   componentWillMount(){
-          axios.get(`http://localhost:4000/users/${this.props.params._id}`)//后台代码
-          .then((response) => {
-            // console.log(response);
-            this.setState({users: response.data.user});
-          })
+          // axios.get(`http://localhost:4000/users/${this.props.params._id}`)//后台代码
+          // .then((response) => {
+          //   // console.log(response);
+          //   this.setState({users: response.data.user});
+          // })
   }
       render () {
         console.log(this.props.username);
